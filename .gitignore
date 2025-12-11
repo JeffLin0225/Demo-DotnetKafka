@@ -1,0 +1,22 @@
+.DS_Store
+vcs.xml
+indexLayout.xml
+encodings.xml
+# Build results
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# NuGet packages
+packages/
+*.nupkg
+
+# Test results
+TestResults/
+
+# Cache
+*.cache

@@ -1,0 +1,11 @@
+
+// 進入 container 
+docker exec -it kafka
+
+// 查看 Topic
+kafka-topics --bootstrap-server localhost:9092 --list 
+
+// 創建 Topic 
+kafka-topics --bootstrap-server localhost:9092 --create --topic source-topic --partitions 3 --replication-factor 1
+kafka-topics --bootstrap-server localhost:9092 --create --topic router-topic --partitions 3 --replication-factor 1
+
