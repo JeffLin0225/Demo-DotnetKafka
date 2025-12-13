@@ -50,7 +50,7 @@ public class KafkaFactory : IKafkaFactory , IDisposable
 
     public void Dispose()
     {
-        if (_disposed)
+        if (!_disposed)
         {
             if (_producer.IsValueCreated)
             {

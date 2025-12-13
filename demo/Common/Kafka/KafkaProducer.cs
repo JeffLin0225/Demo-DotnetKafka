@@ -10,9 +10,9 @@ public interface IKafkaProducerService
 public class KafkaProducer : IKafkaProducerService
 {
     private readonly ILogger<KafkaProducer> _logger;
-    private readonly KafkaFactory _kafkaFactory;
+    private readonly IKafkaFactory _kafkaFactory;
 
-    public KafkaProducer(ILogger<KafkaProducer> logger , KafkaFactory kafkaFactory)
+    public KafkaProducer(ILogger<KafkaProducer> logger , IKafkaFactory kafkaFactory)
     {
         _logger = logger;
         _kafkaFactory = kafkaFactory;
@@ -24,14 +24,8 @@ public class KafkaProducer : IKafkaProducerService
     public async Task SendAsync(string topic , string message)
     {
         var producer = _kafkaFactory.CreateProducer();
-        try
-        {
-            // 發送等待
-            await producer.ProduceAsync(topic, new Message<Null, string>{Value = message}); 
-        }
-        catch (Exception e)
-        {
-            _logger.LogError("Kafka SendAsync Error: {e}" , e.Message);
-        }
+    
+        // 發送等待
+        await producer.ProduceAsync(topic, new Message<Null, string>{Value = message});
     }
 }
