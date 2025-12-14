@@ -33,6 +33,7 @@ public class DataSender
         catch (Exception e)
         {
             _logger.LogError(e , "Kafka Send Data ERROR... Count:{messageCount}", messageCount);
+            throw;
         }
         
     } 

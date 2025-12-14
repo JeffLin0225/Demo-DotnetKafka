@@ -18,7 +18,7 @@ public class DataReceiver
         _logger = logger;
         _kafkaFactory = kafkaFactory;
         
-        _topic = configuration["Kafka:InputTopic"] ?? throw new NullReferenceException("找不到 Kafka:OutputTopic");
+        _topic = configuration["Kafka:InputTopic"] ?? throw new NullReferenceException("找不到 Kafka:InputTopic");
         _groupId = configuration["Kafka:ConsumerGroupId"]  ?? throw new NullReferenceException("找不到 Kafka:ConsumerGroupId");
     }
 
@@ -48,6 +48,8 @@ public class DataReceiver
                     // 卸貨
                     // buffer 轉 List 
                     var messageList = buffer.Select(x => x.Message.Value).ToList();
+                    
+                    // 給傳入要用的方法
                     await processLogic(messageList);
                     consumer.Commit(buffer.Last());
                 }
@@ -62,6 +64,11 @@ public class DataReceiver
                     buffer.Clear();
                 }
             }
+        }
+        catch (OperationCanceledException)
+        {
+            // 這是正常的關閉Consumer流程
+            _logger.LogWarning("接收到停止訊號，DataReceiver 正常關閉。");
         }
         catch (Exception e)
         {

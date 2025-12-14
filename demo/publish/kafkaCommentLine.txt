@@ -9,3 +9,11 @@ kafka-topics --bootstrap-server localhost:9092 --list
 kafka-topics --bootstrap-server localhost:9092 --create --topic source-topic --partitions 3 --replication-factor 1
 kafka-topics --bootstrap-server localhost:9092 --create --topic router-topic --partitions 3 --replication-factor 1
 
+// 聽
+kafka-console-consumer --bootstrap-server localhost:9092 --topic router-topic --from-beginning
+
+// 拋資料
+kafka-console-producer --bootstrap-server localhost:9092 --topic source-topic
+
+docker-compose down -v
+docker-compose up -d
