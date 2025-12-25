@@ -36,7 +36,7 @@ public class DataReceiver
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                FillBuffer(consumer, buffer);
+                FillBuffer(consumer, buffer, stoppingToken);
                 if (buffer.Count == 0)
                 {
                     await Task.Delay(50, stoppingToken);
@@ -78,7 +78,7 @@ public class DataReceiver
          
     }
 
-    private void FillBuffer(IConsumer<Null, string> consumer, List<ConsumeResult<Null,string>> buffer)
+    private void FillBuffer(IConsumer<Null, string> consumer, List<ConsumeResult<Null,string>> buffer, CancellationToken stoppingToken)
     {
         var startTime = DateTime.Now;
         
