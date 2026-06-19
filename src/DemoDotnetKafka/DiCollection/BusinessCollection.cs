@@ -1,6 +1,6 @@
-using demo.Service.Business;
+using DemoDotnetKafka.Service.Business;
 
-namespace demo.DiCollection;
+namespace DemoDotnetKafka.DiCollection;
 
 public static class BusinessCollection
 {

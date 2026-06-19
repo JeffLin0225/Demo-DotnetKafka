@@ -1,6 +1,6 @@
-using demo.Common.Kafka;
+using DemoDotnetKafka.Common.Kafka;
 
-namespace demo.Service;
+namespace DemoDotnetKafka.Service;
 
 public class DataSender
 {

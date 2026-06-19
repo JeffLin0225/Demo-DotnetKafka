@@ -1,4 +1,4 @@
-namespace demo.Common.Kafka;
+namespace DemoDotnetKafka.Common.Kafka;
 using Confluent.Kafka;
 
 public interface IKafkaFactory

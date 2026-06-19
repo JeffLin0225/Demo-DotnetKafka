@@ -27,25 +27,27 @@ graph LR
 ```
 Demo-DotnetKafka/
 ├── DemoDotnet.sln
-└── demo/
-    ├── Program.cs                  # 程式進入點 — 註冊 DI 並啟動 Worker
-    ├── Worker.cs                   # BackgroundService 生命週期，委派給 SubscribeService
-    ├── demo.csproj                 # .NET 10, Confluent.Kafka 2.12.0
-    ├── Dockerfile                  # 多階段建置（SDK → ASP.NET runtime）
-    ├── appsettings.json            # Kafka 連線與 Topic 組態
-    ├── Common/
-    │   └── Kafka/
-    │       ├── KafkaFactory.cs     # 建立 Producer（透過 Lazy<T> 單例）與 Consumer 實例
-    │       └── KafkaProducer.cs    # 輕量封裝 — 非同步發送至任意 Topic
-    ├── Service/
-    │   ├── Kafka/
-    │   │   ├── DataReceiver.cs     # 批次消費者：填充 buffer 至 100 筆 / 500ms
-    │   │   └── DataSender.cs       # 並行非同步發送，使用 Task.WhenAll
-    │   └── Business/
-    │       └── SubscribeService.cs # 編排者：接收 → 處理 → 發送
-    └── DiCollection/
-        ├── KafkaCollection.cs      # 擴充方法：註冊 Kafka 基礎設施 + 服務
-        └── BusinessCollection.cs   # 擴充方法：註冊業務邏輯服務
+├── .gitattributes
+└── src/
+    └── DemoDotnetKafka/
+        ├── Program.cs                  # 程式進入點 — 註冊 DI 並啟動 Worker
+        ├── Worker.cs                   # BackgroundService 生命週期，委派給 SubscribeService
+        ├── DemoDotnetKafka.csproj      # .NET 10, Confluent.Kafka 2.12.0
+        ├── Dockerfile                  # 多階段建置（SDK → ASP.NET runtime）
+        ├── appsettings.json            # Kafka 連線與 Topic 組態
+        ├── Common/
+        │   └── Kafka/
+        │       ├── KafkaFactory.cs     # 建立 Producer（透過 Lazy<T> 單例）與 Consumer 實例
+        │       └── KafkaProducer.cs    # 輕量封裝 — 非同步發送至任意 Topic
+        ├── Service/
+        │   ├── Kafka/
+        │   │   ├── DataReceiver.cs     # 批次消費者：填充 buffer 至 100 筆 / 500ms
+        │   │   └── DataSender.cs       # 並行非同步發送，使用 Task.WhenAll
+        │   └── Business/
+        │       └── SubscribeService.cs # 編排者：接收 → 處理 → 發送
+        └── DiCollection/
+            ├── KafkaCollection.cs      # 擴充方法：註冊 Kafka 基礎設施 + 服務
+            └── BusinessCollection.cs   # 擴充方法：註冊業務邏輯服務
 ```
 
 ## 快速開始
@@ -58,7 +60,7 @@ Demo-DotnetKafka/
 ```bash
 # 取得原始碼
 git clone https://github.com/JeffLin0225/Demo-DotnetKafka.git
-cd Demo-DotnetKafka/demo
+cd Demo-DotnetKafka/src/DemoDotnetKafka
 
 # 啟動服務
 dotnet run
@@ -66,9 +68,9 @@ dotnet run
 
 ### Docker 執行
 ```bash
-cd Demo-DotnetKafka/demo
-docker build -t demo-dotnet .
-docker run --network host demo-dotnet
+cd Demo-DotnetKafka/src/DemoDotnetKafka
+docker build -t demodotnetkafka .
+docker run --network host demodotnetkafka
 ```
 
 ### 組態設定

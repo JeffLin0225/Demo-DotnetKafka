@@ -1,7 +1,7 @@
 using Confluent.Kafka;
-using demo.Common.Kafka;
+using DemoDotnetKafka.Common.Kafka;
 
-namespace demo.Service;
+namespace DemoDotnetKafka.Service;
 
 public class DataReceiver
 {

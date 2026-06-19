@@ -1,5 +1,5 @@
-using demo;
-using demo.DiCollection;
+using DemoDotnetKafka;
+using DemoDotnetKafka.DiCollection;
 
 
 var builder = Host.CreateApplicationBuilder(args);

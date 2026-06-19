@@ -1,7 +1,7 @@
-using demo.Common.Kafka;
-using demo.Service;
+using DemoDotnetKafka.Common.Kafka;
+using DemoDotnetKafka.Service;
 
-namespace demo.DiCollection;
+namespace DemoDotnetKafka.DiCollection;
 
 public static class KafkaCollection
 {
@@ -11,7 +11,7 @@ public static class KafkaCollection
         services.AddSingleton<IKafkaProducerService, KafkaProducer>();
         
         // 應用層 (收發)
-        // 注意 namespace 是 demo.Service.Kafka
+        // 注意 namespace 是 DemoDotnetKafka.Service
         services.AddSingleton<DataReceiver>();
         services.AddSingleton<DataSender>();
 

@@ -1,6 +1,6 @@
 using Confluent.Kafka;
 
-namespace demo.Common.Kafka;
+namespace DemoDotnetKafka.Common.Kafka;
 
 public interface IKafkaProducerService
 {

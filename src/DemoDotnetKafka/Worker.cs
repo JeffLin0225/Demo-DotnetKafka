@@ -1,6 +1,6 @@
-using demo.Service.Business;
+using DemoDotnetKafka.Service.Business;
 
-namespace demo;
+namespace DemoDotnetKafka;
 
 public class Worker : BackgroundService
 {

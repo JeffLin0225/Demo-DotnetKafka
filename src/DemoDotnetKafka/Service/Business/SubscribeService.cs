@@ -1,4 +1,4 @@
-namespace demo.Service.Business;
+namespace DemoDotnetKafka.Service.Business;
 
 public class SubscribeService
 {
